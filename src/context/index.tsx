@@ -26,11 +26,12 @@ const reducer: Reducer<State, Action> = (state, { type, payload }) =>
     }
   }[type] as State)
 
-const MyContext = createContext<{
+interface ContextValue {
   state: State
   dispatch: Dispatch<Action>
   actions: typeof actions
-}>(null!)
+}
+const MyContext = createContext<ContextValue>(null!)
 export const useMyContext = () => useContext(MyContext)
 export const MyContextProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
@@ -40,3 +41,12 @@ export const MyContextProvider = ({ children }: { children: ReactNode }) => {
     </MyContext.Provider>
   )
 }
+const BridgeContext = createContext<ContextValue>(null!)
+export const useBridgeContext = () => useContext(MyContext)
+export const BridgeContextProvider = ({
+  value,
+  children
+}: {
+  value: ContextValue
+  children: ReactNode
+}) => <MyContext.Provider value={value}>{children}</MyContext.Provider>
