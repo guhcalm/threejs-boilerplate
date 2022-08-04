@@ -1,35 +1,17 @@
 import { Canvas } from "@react-three/fiber"
 import {
-  Color,
   sRGBEncoding,
   ACESFilmicToneMapping,
   EquirectangularReflectionMapping,
-  MeshStandardMaterial
+  Color,
+  Fog
 } from "three"
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader"
+import { EffectComposer, SSAO } from "@react-three/postprocessing"
 import { useMyContext, BridgeContextProvider } from "./context"
-
-const ClayMaterial = new MeshStandardMaterial({
-  color: "white",
-  metalness: 0,
-  roughness: 0.9
-})
-const GroundMaterial = new MeshStandardMaterial({
-  color: "rgb(252, 190, 180)",
-  metalness: 0.5
-})
-
-const Envirionment = () => (
-  <>
-    <mesh castShadow position-y={1} material={ClayMaterial}>
-      <sphereBufferGeometry args={[1]} />
-    </mesh>
-    <mesh receiveShadow rotation-x={-Math.PI / 2} material={GroundMaterial}>
-      <planeBufferGeometry args={[300, 300]} />
-    </mesh>
-  </>
-)
+import { Player } from "./Player"
+import { Environment } from "./Environment"
 
 export const MyScene = () => (
   <Canvas
@@ -37,37 +19,54 @@ export const MyScene = () => (
     gl={{
       powerPreference: "high-performance",
       toneMapping: ACESFilmicToneMapping,
+      toneMappingExposure: 1.5,
       outputEncoding: sRGBEncoding,
       pixelRatio: Math.min(devicePixelRatio, 2),
       physicallyCorrectLights: true,
       stencil: false,
-      antialias: true,
       alpha: false,
+      depth: false,
+      antialias: true,
       logarithmicDepthBuffer: true
     }}
-    camera={{ near: 0.1, far: 100, position: [0, 2, 5] }}
+    camera={{ near: 0.1, far: 100, position: [2, 2, -5] }}
     onCreated={({ scene, camera, gl }) => {
       scene.background = new Color("black")
+      scene.fog = new Fog("black", 0, 100)
       new OrbitControls(camera, gl.domElement).update()
       new RGBELoader().load("assets/blurry.hdr", texture => {
+        texture.matrixAutoUpdate = false
         texture.mapping = EquirectangularReflectionMapping
         scene.environment = texture
       })
     }}
   >
     <BridgeContextProvider value={useMyContext()}>
-      <axesHelper args={[10]} />
+      <directionalLight
+        color="rgb(252,190,180)"
+        position={[0, 35, -5]}
+        castShadow
+      />
       <ambientLight color="rgb(167,140,129)" intensity={0.2} />
       <ambientLight color="rgb(255,211,153)" intensity={0.1} />
-      <directionalLight color="white" position={[5, 10, -5]} castShadow />
-      <Envirionment />
+      <EffectComposer multisampling={0}>
+        <SSAO
+          luminanceInfluence={1}
+          intensity={30}
+          radius={0.05}
+          bias={0}
+          color="rgb(167,140,129)"
+        />
+        <SSAO
+          luminanceInfluence={1}
+          intensity={60}
+          radius={0.005}
+          bias={0}
+          color="rgb(167,140,129)"
+        />
+      </EffectComposer>
+      <Environment />
+      <Player />
     </BridgeContextProvider>
   </Canvas>
 )
-
-/*
-
-      <ambientLight color="rgb(167,140,129)" />
-      <ambientLight color="rgb(255,211,153)" intensity={0.5} />
-      <directionalLight color="rgb(252,190,180)" position={[0, 5, -5]} />
-*/

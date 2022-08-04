@@ -1160,27 +1160,28 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@react-three/fiber@^8.2.2":
-  version "8.2.2"
-  resolved "https://registry.yarnpkg.com/@react-three/fiber/-/fiber-8.2.2.tgz#c8b197ffddb1a6ec20f73db663b7673ffa53cadb"
-  integrity sha512-NO/tOCYK8SQ2vuM2y2r98054X4SMGYIlHgiVRNaSo6JiXyoT3FN0aIH1nDzhDFJ5N/2C/PKa+yeg2M2/8YDFJg==
+"@react-three/fiber@8.0.12":
+  version "8.0.12"
+  resolved "https://registry.yarnpkg.com/@react-three/fiber/-/fiber-8.0.12.tgz#4082d18b3f3bdafef3ead1fa2d1019738f4c1bf7"
+  integrity sha512-McYcJDlkksn9LlIhE2A4Y2scZOtKfX1ia3+7EvpFjFozFJx0Ecszi7atlizOvesIa9nG9VQWQCvjQxu9L0/TmA==
   dependencies:
     "@babel/runtime" "^7.17.8"
-    "@types/react-reconciler" "^0.26.7"
+    "@types/react-reconciler" "^0.26.6"
+    react-merge-refs "^1.1.0"
     react-reconciler "^0.27.0"
     react-use-measure "^2.1.1"
     scheduler "^0.21.0"
     suspend-react "^0.0.8"
     zustand "^3.7.1"
 
-"@react-three/postprocessing@^2.5.5":
-  version "2.5.5"
-  resolved "https://registry.yarnpkg.com/@react-three/postprocessing/-/postprocessing-2.5.5.tgz#0cc09ad36f537a4769d8d62ef3227460ec56cca3"
-  integrity sha512-dgFuEEksYgjpZzRPZtoc4/+TxmZV4ImRDzPDfgy1vIPPxpkc2ZSCKJnp5qoOA7aYUbfX0TKTd8CFwT/u4D7wdw==
+"@react-three/postprocessing@2.4.6":
+  version "2.4.6"
+  resolved "https://registry.yarnpkg.com/@react-three/postprocessing/-/postprocessing-2.4.6.tgz#1dfd6869ea064df36a7e4b770943c74a76a96377"
+  integrity sha512-LxCCtBamNT5uHN8Y1K5ec7ZqdmcIEoWUTWW0ujofX9kode5htk0E2zl8onSXMvRaDsOCMzP5EK3MycLXWgGFuA==
   dependencies:
-    postprocessing "^6.28.4"
+    postprocessing "^6.28.1"
     react-merge-refs "^1.1.0"
-    screen-space-reflections "^2.1.0"
+    screen-space-reflections "^1.0.8"
     three-stdlib "^2.8.11"
 
 "@tsconfig/node10@^1.0.7":
@@ -1344,7 +1345,7 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-reconciler@^0.26.7":
+"@types/react-reconciler@^0.26.6":
   version "0.26.7"
   resolved "https://registry.yarnpkg.com/@types/react-reconciler/-/react-reconciler-0.26.7.tgz#0c4643f30821ae057e401b0d9037e03e8e9b2a36"
   integrity sha512-mBDYl8x+oyPX/VBb3E638N0B7xG+SPk/EAMcVPeexqus/5aTpTphQi0curhhshOqRrc9t6OPoJfEUkbymse/lQ==
@@ -1401,17 +1402,10 @@
     "@types/react" "*"
     csstype "^3.0.2"
 
-"@types/three@^0.143.0":
-  version "0.143.0"
-  resolved "https://registry.yarnpkg.com/@types/three/-/three-0.143.0.tgz#686f1221c4c89d797713f0533d2f129afcc3572d"
-  integrity sha512-c5PonXOt8xk5q4ygmyjOX4Ec+FA7gwfdcMT/PveE9xrJs/0DDcf2lJkWrhEcmvx2ZefQCQBcogABnGqB0P4OsA==
-  dependencies:
-    "@types/webxr" "*"
-
-"@types/webxr@*":
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/@types/webxr/-/webxr-0.5.0.tgz#aae1cef3210d88fd4204f8c33385a0bbc4da07c9"
-  integrity sha512-IUMDPSXnYIbEO2IereEFcgcqfDREOgmbGqtrMpVPpACTU6pltYLwHgVkrnYv0XhWEcjio9sYEfIEzgn3c7nDqA==
+"@types/three@0.132.0":
+  version "0.132.0"
+  resolved "https://registry.yarnpkg.com/@types/three/-/three-0.132.0.tgz#d2d4c8336faf993855c0a5933d7107d4e70de9b6"
+  integrity sha512-NCZ7KbGMa0l8z8Pk4cNCw3tSST+keOXeD9IXdiOJWQnVaFpbUpE/wIdbalkK1c0fs/Z+OZzjLZEWf2zRoVGOCg==
 
 "@types/ws@^8.5.1":
   version "8.5.3"
@@ -4281,10 +4275,10 @@ postcss-value-parser@^4.0.2:
   resolved "https://registry.yarnpkg.com/postcss-value-parser/-/postcss-value-parser-4.2.0.tgz#723c09920836ba6d3e5af019f92bc0971c02e514"
   integrity sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==
 
-postprocessing@^6.28.4:
-  version "6.28.4"
-  resolved "https://registry.yarnpkg.com/postprocessing/-/postprocessing-6.28.4.tgz#03dc2b5c546ef26bdd963af1ea8f75c933e88e34"
-  integrity sha512-xVw7wT9H4s/f/AWS+u3FssIZ1iMY632zweCHqcNZ1ydFChCWeHcWOpEPx0dQz2DMIUlZclFW9WmwMJQxESI+cQ==
+postprocessing@^6.28.1:
+  version "6.28.5"
+  resolved "https://registry.yarnpkg.com/postprocessing/-/postprocessing-6.28.5.tgz#82363194d366f606cf0f25e32028fd46debca919"
+  integrity sha512-e9aH6T720AiQpStdgqrQSsHzpddFQ7Q8v204sZx4iSTnUuYvkq7mFPOyzhVDlx5NrmXXbwz2PEK2XTq+qEYSMg==
 
 potpack@^1.0.1:
   version "1.0.2"
@@ -4681,10 +4675,10 @@ schema-utils@^4.0.0:
     ajv-formats "^2.1.1"
     ajv-keywords "^5.0.0"
 
-screen-space-reflections@^2.1.0:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/screen-space-reflections/-/screen-space-reflections-2.1.1.tgz#e6ca2f0af64d997ccd94737fe7d3adce0fdaa0b1"
-  integrity sha512-UwBaTb6Ss/8EfhDHEdybPhMbHXmtchOcpHHTa5guFFzjj1f0998twZRr/svOJaA/Nyi44VL2Cqf3xGhdu3hC2w==
+screen-space-reflections@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/screen-space-reflections/-/screen-space-reflections-1.0.8.tgz#304de62086cdcfa92151a48d19a608539e548586"
+  integrity sha512-UBahDIY3TBds7RIkiGmBMQLZKjBYuAdatOBHEs8jpkSe414cJ66nKNPh/cBFL7ZekTorluNbmxdbJ1GEw/e8xQ==
 
 select-hose@^2.0.0:
   version "2.0.0"
@@ -5100,10 +5094,10 @@ three-stdlib@^2.8.11:
     potpack "^1.0.1"
     zstddec "^0.0.2"
 
-three@^0.143.0:
-  version "0.143.0"
-  resolved "https://registry.yarnpkg.com/three/-/three-0.143.0.tgz#1455bca132cc2b20beb7f41d313e10c29e5ed9df"
-  integrity sha512-oKcAGYHhJ46TGEuHjodo2n6TY2R6lbvrkp+feKZxqsUL/WkH7GKKaeu6RHeyb2Xjfk2dPLRKLsOP0KM2VgT8Zg==
+three@0.142.0:
+  version "0.142.0"
+  resolved "https://registry.yarnpkg.com/three/-/three-0.142.0.tgz#89e226a16221f212eb1d40f0786604b711f28aed"
+  integrity sha512-ESjPO+3geFr+ZUfVMpMnF/eVU2uJPOh0e2ZpMFqjNca1wApS9lJb7E4MjwGIczgt9iuKd8PEm6Pfgp2bJ92Xtg==
 
 through@^2.3.8:
   version "2.3.8"
