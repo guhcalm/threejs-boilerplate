@@ -14,7 +14,6 @@ position.needsUpdate = true
 geometry.computeVertexNormals()
 
 const GroundMaterial = new MeshBasicMaterial()
-
 export const Environment = () => (
   <>
     <mesh
@@ -34,6 +33,7 @@ export const Environment = () => (
       <boxGeometry args={[1, 10, 5]} />
     </mesh>
     <mesh
+      matrixAutoUpdate={false}
       geometry={geometry}
       receiveShadow
       castShadow

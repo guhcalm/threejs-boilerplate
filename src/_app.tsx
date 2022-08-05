@@ -6,3 +6,5 @@ export const MyApp = () => (
     <MyScene />
   </Layout>
 )
+
+const array = new Float32Array()

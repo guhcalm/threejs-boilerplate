@@ -153,8 +153,9 @@ export const Player = () => {
     <group ref={setEntity}>
       <mesh castShadow name={NAME} position-y={RADIUS} receiveShadow>
         <sphereBufferGeometry args={[1]} />
-        <meshStandardMaterial roughness={0} />
+        <meshPhysicalMaterial roughness={0} metalness={0} color="white" />
       </mesh>
+      <directionalLight position={[0, 35, -5]} castShadow />
       <axesHelper args={[3]} position-y={RADIUS} />
     </group>
   )
