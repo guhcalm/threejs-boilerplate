@@ -456,7 +456,7 @@ grad(C4) = (x2 - x1) x (x3 - x1)
 s = -C / w1|grad(C1)|²+w2|grad(C2)|²+...+wn|grad(Cn)|² 
 s = - (6(V - Vi)) / w1|grad(C1)|²+w2|grad(C2)|²+w3|grad(C3)|²+w4|grad(C4)|²
 s = - (6(V - Vi)) / w1 * 1 + w2 * 1 + w3 * 1 + w4 * 1
-
+ 
 Dxi = wi * s * grad(Ci)
 Dx1 = - [w1 / (w1 + w2 + w3 + w4)] * 6(V - Vi) * [(x4 - x2) x (x3 - x2)] 
 Dx2 = - [w2 / (w1 + w2 + w3 + w4)] * 6(V - Vi) * [(x3 - x1) x (x4 - x1)] 
@@ -550,3 +550,99 @@ Finding Triangle Neighbors
 99% of complecity os rigid body formulations comer from using a global solvers!,
 XPBD use a local Solver
 . Fix slow convergence with sub-stepping
+
+
+
+
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+First : Environment Light
+Color Space -> Gamma to Linear
+Shador bias -> 0
+Fog -> blue, 15, 300
+ToneMapping: ACES
+exposure: 1.1
+
+Post-Processing:
+Temporal Anti-aliasing (TAA)
+Ambient Oclusion {
+   intensity: .5
+   radius: 0.25
+   color: black
+}
+Depth of field
+
+Ambient = immediately surrounding
+Occlusion = blockage
+
+shadowMap.type = PCFShadowMap
+
+light.shadow.mapSize(1024, 1024)
+light.shadow.bias = 0.005
+light.shadow.normalBias = 0.005
+
+
+///////////////////////////////////////////////////////////////////////////////
+Elementos flotantes on threejs
+
+
+export const FloatPoint = styled.div`
+   position: absolute;
+   top: 50%;
+   left: 50%;
+`
+
+export const FloatPointLabel = styled.div`
+   width: 40px;
+   height: 40px;
+   position: absolute;
+   left: -20px;
+   top: -20px;
+   background-color: rgba(0, 0, 0, .6);
+   border-radius: 50%;
+   color: #fff;
+   font-size: 1.2rem;
+   font-weight: bold;
+   text-align: center;
+   line-height: 40px;
+   cursor: pointer;
+   &:hover {
+      transform: scale(1.1, 1.1);
+      background-color: rgba(0, 0, 0, .9); 
+      transition: .3s all ease;
+   }
+`
+
+
+export const FloatPointText = styled.div`
+   width: 120px;
+   padding: 1rem;
+   position: absolute;
+   top: 30px;
+   left: -60px; 
+   background-color: rgba(0, 0, 0, .9);
+   color: #fff;
+   font-size: 1.2rem;
+   font-weight: bold;
+   text-align: center;
+   transition: .3s all ease;
+   opacity: 0;
+`
+
+
+const Scene = () => {
+   return (
+      <Canvas />
+      <FloatPoint>
+         <FloatPointLabel>1</FloatPointLabel>
+         <FloatPointText>Lorem Ipsum</FloatPointText>
+      </FloatPoint>
+   )
+}

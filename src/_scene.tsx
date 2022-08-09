@@ -3,16 +3,17 @@ import {
   sRGBEncoding,
   ACESFilmicToneMapping,
   EquirectangularReflectionMapping,
-  Color,
-  Fog
+  PCFShadowMap
 } from "three"
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader"
-import { EffectComposer, SSAO, SSR } from "@react-three/postprocessing"
+import { DepthOfField, EffectComposer, SSAO } from "@react-three/postprocessing"
+import { BlendFunction } from "postprocessing"
 import { useMyContext, BridgeContextProvider } from "./context"
 import { Player } from "./Player"
 import { Bunny } from "./Bunny"
 import { Environment } from "./Environment"
+import { Cloth } from "./Cloth"
 
 export const MyScene = () => (
   <Canvas
@@ -32,6 +33,8 @@ export const MyScene = () => (
     }}
     camera={{ near: 0.1, far: 100, position: [-8, 3, -3] }}
     onCreated={({ scene, camera, gl }) => {
+      gl.shadowMap.enabled = true
+      gl.shadowMap.type = PCFShadowMap
       new OrbitControls(camera, gl.domElement).update()
       new RGBELoader().load("assets/blurry.hdr", texture => {
         texture.mapping = EquirectangularReflectionMapping
@@ -43,22 +46,34 @@ export const MyScene = () => (
   >
     <BridgeContextProvider value={useMyContext()}>
       <EffectComposer multisampling={0}>
-        <SSAO
-          luminanceInfluence={0}
-          radius={0.01}
-          bias={0}
-          color="rgb(167,140,129)"
+        <DepthOfField
+          focusDistance={0.0035}
+          focalLength={0.01}
+          bokehScale={3}
+          height={480}
         />
         <SSAO
-          luminanceInfluence={0}
-          radius={0.001}
-          bias={0}
-          color="rgb(167,140,129)"
+          blendFunction={BlendFunction.MULTIPLY}
+          bias={0.01}
+          radius={0.1}
+          intensity={20}
+          luminanceInfluence={1}
+          color="black"
+        />
+        <SSAO
+          blendFunction={BlendFunction.MULTIPLY}
+          bias={0.01}
+          radius={0.01}
+          intensity={10}
+          luminanceInfluence={1}
+          color="black"
         />
       </EffectComposer>
-      <Environment />
+      {/* <Environment />
       <Player />
-      <Bunny />
+      <Bunny /> */}
+      <Cloth />
+      <pointLight intensity={30} position={[0, 35, -5]} castShadow />
     </BridgeContextProvider>
   </Canvas>
 )

@@ -1,6 +1,14 @@
 import { useFrame } from "@react-three/fiber"
 import { Dispatch, SetStateAction, useState } from "react"
-import { Mesh, Object3D, Quaternion, Raycaster, Vector2, Vector3 } from "three"
+import {
+  Mesh,
+  MeshStandardMaterial,
+  Object3D,
+  Quaternion,
+  Raycaster,
+  Vector2,
+  Vector3
+} from "three"
 
 const NAME: string = "PLAYER"
 const RADIUS: number = 1
@@ -145,17 +153,25 @@ const useEntityBehaviors = (setEntity: Dispatch<SetStateAction<Object3D>>) => {
     })
   })
 }
-
+const PlayerMaterial = new MeshStandardMaterial({
+  color: "#c0a090",
+  emissive: "red",
+  roughness: 0
+})
 export const Player = () => {
   const [, setEntity] = useState<Object3D>(null!)
-  useEntityBehaviors(setEntity)
+  // useEntityBehaviors(setEntity)
   return (
     <group ref={setEntity}>
-      <mesh castShadow name={NAME} position-y={RADIUS} receiveShadow>
+      <mesh
+        castShadow
+        name={NAME}
+        position-y={RADIUS}
+        receiveShadow
+        material={PlayerMaterial}
+      >
         <sphereBufferGeometry args={[1]} />
-        <meshPhysicalMaterial roughness={0} metalness={0} color="white" />
       </mesh>
-      <directionalLight position={[0, 35, -5]} castShadow />
       <axesHelper args={[3]} position-y={RADIUS} />
     </group>
   )

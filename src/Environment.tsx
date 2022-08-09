@@ -1,4 +1,4 @@
-import { MeshBasicMaterial, PlaneBufferGeometry } from "three"
+import { MeshStandardMaterial, PlaneBufferGeometry } from "three"
 
 const geometry = new PlaneBufferGeometry(300, 300, 50, 50)
 geometry.rotateX(-Math.PI / 2)
@@ -13,7 +13,12 @@ new Array(position.count).fill("").forEach((value, index) => {
 position.needsUpdate = true
 geometry.computeVertexNormals()
 
-const GroundMaterial = new MeshBasicMaterial()
+const GroundMaterial = new MeshStandardMaterial({
+  color: "white",
+  emissive: "black",
+  roughness: 1,
+  flatShading: true
+})
 export const Environment = () => (
   <>
     <mesh
